@@ -1,0 +1,171 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX predložak za natjecanja u programiranju 
+%
+% Ovaj predložak je preuzet s:
+% http://www.latextemplates.com
+%
+% Izvorni autor:
+% Ted Pavlic (http://www.tedpavlic.com)
+% Licenca: CC Attribution-NC-SA 3.0.
+%
+% Posebno uređeno za opis problema natjecateljskog programiranja
+% od koosaga (http://koosaga.com), seungwonpark (http://swpark.me)
+%
+% GitHub repozitorij za ovaj predložak (trenutno (2017.05.21) privatno):
+% https://github.com/seungwonpark/PS-latex-predložak
+%
+% GitHub repozitorij za ovaj predložak (trenutno (23.02.2024.) privatno):
+% https://github.com/pmatisic/ispit
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+\RequirePackage[croatian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr} % Potrebno za prilagođene zaglavlja
+\usepackage{lastpage} % Potrebno za određivanje posljednje stranice za podnožje
+\usepackage{extramarks} % Potrebno za zaglavlja i podnožja
+\usepackage[usenames,dvipsnames]{color} % Potrebno za prilagođene boje
+\usepackage{graphicx} % Potrebno za umetanje slika
+\usepackage{listings} % Potrebno za umetanje koda
+\usepackage{courier} % Potrebno za font courier
+\usepackage{lipsum} % Koristi se za umetanje lažnog teksta 'Lorem ipsum' u predložak
+\usepackage{amsthm,amsmath} % Postavljanje jednadžbi
+\usepackage{algorithm, algpseudocode} % algoritam
+\usepackage{verbatim} % za komentar, okruženje verbatim
+\usepackage{spverbatim} % automatski prelom retka okruženje verbatim
+\usepackage{listings} % Potrebno za lstlisting
+\lstset{breaklines=true} % Prelom riječi unutar okruženja listings
+\lstset{basicstyle = \ttfamily,columns=fullflexible}
+\usepackage{hyperref} % Potrebno za korištenje href
+\usepackage{pgffor} % Potrebno za korištenje \foreach
+
+\lstset{columns=fullflexible}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{datetime} % Koristi se za prikazivanje verzije kao posljednje vrijeme izmjene
+\yyyymmdddate
+\usepackage{multicol}
+\setlength{\columnseprule}{0.4pt}
+
+% Margine
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Razmak između linija
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Postavljanje zaglavlja i podnožja
+\pagestyle{fancy}
+\lhead{}
+\chead{STEM Igre 2024. - Selekcijski ispit (FOI)} % Srednje zaglavlje na vrhu
+\rhead{Subota, 24. veljače 2024.} % Desno zaglavlje na vrhu
+\lfoot{\lastxmark} % Donje lijevo podnožje
+\cfoot{\thepage} % Donje središnje podnožje
+\rfoot{Zadnja izmjena: \today \ \currenttime}
+\def\inputdataname{Ulaz } % Naziv 'ulaza'
+\def\outputdataname{Izlaz } % Naziv 'izlaza'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand\headrulewidth{0.4pt} % Veličina linije zaglavlja
+\renewcommand\footrulewidth{0.4pt} % Veličina linije podnožja
+
+\setlength\parindent{0pt} % Uklanja sve uvlačenje iz odlomaka
+
+\setcounter{secnumdepth}{0} % Uklanja zadane brojeve odjeljaka
+\newcounter{homeworkProblemCounter} % Stvara brojač za praćenje broja problema
+
+\newcommand{\iodataNo}[1]{%
+\begin{minipage}{\textwidth}
+\begin{multicols}{2}
+\href{run:input#1.txt}{\inputdataname#1} \\
+\rule{\columnwidth}{1pt}
+\lstinputlisting[language={}]{input/input#1.txt}
+\columnbreak
+\href{run:output#1.txt}{\outputdataname#1} \\
+\rule{\columnwidth}{1pt}
+\lstinputlisting[language={}]{output/output#1.txt}
+\end{multicols}
+\vspace{\baselineskip}
+\end{minipage}
+}
+
+\begin{document}
+
+\section{Problem 1. Permutacije}
+
+\begin{center}
+Vremensko ograničenje po testu: 1 sekunda \\
+Ograničenje memorije po testu: 256 megabajta \\
+Ulaz: standardni ulaz \\
+Izlaz: standardni izlaz \\
+\end{center}
+\textit{Za svoj rođendan, Ivica je dobio permutaciju!} \\
+Permutacija je niz cijelih brojeva duljine $n$, tako da se svi cijeli brojevi od 1 do $n$ pojavljuju točno jednom. Ivica može u jednom potezu zamijeniti bilo koja dva susjedna broja. Sada je Ivici zanimljivo može li sortirati svoju permutaciju u parnom broju poteza (napraviti paran broj zamjena susjednih brojeva tako da postigne permutaciju $1, \ldots, n$). Ivica je još uvijek mali, pa je zatražio tvoju pomoć!
+
+\subsection{Ulaz}
+Prvi redak sadrži cijeli broj $n$ ($1 \leq n \leq 100$) - duljinu permutacije. \newline
+
+Drugi redak sadrži $n$ cijelih brojeva $p_1, \ldots, p_n$ koji predstavljaju permutaciju.
+
+\subsection{Izlaz}
+U jednom retku ispiši "Yes" ili "No" (bez navodnika).
+
+\subsection{Primjeri}
+% Stavite tekstualne datoteke ulaza u direktorij 'input/'.
+% Format: 'input/input%d.txt'
+% Stavite tekstualne datoteke izlaza u direktorij 'output/'.
+% Format: 'output/output%d.txt'
+
+\iodataNo{1}
+\iodataNo{2}
+
+% % Ili možete koristiti petlju for...
+% \foreach \i in {1, 2, ..., 10}{
+% \iodataNo{\i}
+% }
+
+\subsection{Napomena}
+Napravite svoje testne slučajeve (ulaze) kako biste testirali ispravnost vašega rješenja, s obzirom da validacijski sustav osim navedenih testnih slučajeva ima i bazu ostalih različitih testnih slučajeva prema kojima će se testirati vaše rješenje. Također imajte na umu da vaše rješenje ne prelazi vremensko i memorijsko ograničenje po testu jer se i ona uzimaju u obzir bodovanja.
+
+\newpage
+
+\section{Problem 2. Upravljanje zgradom}
+
+\textit{Ivica je odrastao i postao biznismen!} \\
+Otkako je Ivica ušao u poslovne vode, napravio je zgradu u Varaždinu i njegov cilj je sada osigurati lakše upravljanje tom zgradom tako što počinje s njenom digitalizacijom. Njegova ideja je dizajnirati sofisticirani sustav za upravljanje zgradom koji integrira razne funkcije poput kontrole klime, sigurnosnih sustava, upravljanja energijom, održavanja i nadzora prostora. Sustav treba omogućiti centralizirano upravljanje, automatizaciju i nadzor različitih aspekata zgrade, pružajući prilagođena sučelja za različite korisnike (upravitelj, stanari, održavatelji). Kako bi Ivica ostvario takav sustav, zamolio te je da mu pomogneš sa svojim idejama!
+
+\subsection{Kriteriji dizajniranja rješenja}
+
+\begin{enumerate}
+    \item \textbf{Rješenje sustava (5 bodova):}
+    \begin{itemize}
+        \item komponente sustava i njeni opisi (npr. aplikacija, serveri, podatci, pogledi i sl.)
+        \item dijagram arhitekture sustava koji prikazuje međusobne veze i komunikaciju između komponenti
+    \end{itemize}
+    
+    \item \textbf{Aplikacija (5 bodova):}
+    \begin{itemize}
+        \item način rada aplikacije (npr. frontend, backend, mobilna/desktop/web itd.)
+        \item funkcionalnosti aplikacije
+    \end{itemize}
+    
+    \item \textbf{Baza/skladište podataka (5 bodova):}
+    \begin{itemize}
+        \item odabir vrste i strukture baze/skladišta podataka
+        \item obrazloženje odabira takve baze podataka i njenog plana implementacije
+    \end{itemize}
+    
+    \item \textbf{Tehnologija za razvoj (5 bodova):}
+    \begin{itemize}
+        \item popis tehnologija, programskih jezika, programskih okvira i alata potrebnih za izradu sustava
+        \item obrazloženje zašto su odabrane baš te tehnologije i kako one doprinose funkcionalnosti i efikasnosti sustava
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Napomena}
+Navedeni kriteriji su okvirni plan bodovanja. Nije potrebno opširno pisati odgovore, već u rečenicu-dvije opisati jasnu i preciznu namjeru rješenja kod konkretne stavke kriterija. Naravno, ukoliko imate svoje dodatne inovacije, obrazloženja, opise, dijagrame i slično, to će se također uzeti u obzir. Pritom se napominje da rješenje sustava treba biti realno za izvođenje. Rješenja (opise, slike dijagrama i ostalo) možete pisati u bilokojem tekst \textit{editor}-u, ali pri predaji je potrebno pretvoriti ga u \textbf{pdf} i takvog predati.
+
+\end{document}
